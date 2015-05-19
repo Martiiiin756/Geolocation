@@ -31,35 +31,37 @@ $(function(){
 		console.log('latitude: ' + startPos.coords.latitude);
 		console.log('longitude: ' + startPos.coords.longitude);
 		console.log('position: ' + startPos);
+		var lineCoordinates = [
+			new google.maps.LatLng(startPos.coords.latitude, startPos.coords.longitude)
+		];
+		var walkPath = new google.maps.Polyline({
+			path: lineCoordinates,
+			geodesic: true,
+			strokeColor: '#FF0000',
+			strokeOpacity: 1.0,
+			strokeWeight: 2
+ 		 });
 	});
 	
 	navigator.geolocation.watchPosition(function(position) {
   		console.log('current lat pos: ' + position.coords.latitude);
   		console.log('current long pos: ' + position.coords.longitude);
+  		updateLine(position.latitude, position.longitude, walkPath);
 	});
 	
-
-
 	//Aktivera stylingen till kartan
 	map.setOptions({styles: mapStyle});
 
 
 
-	///Pseudo för polylines
-	/*var lineCoordinates = [
-		new google.maps.LatLng(lat, lng),
-		new google.maps.LatLng(lat2, lng2),
-		new google.maps.LatLng(lat3, lng3)
-	];
-	var walkPath = new google.maps.Polyline({
-		path: lineCoordinates,
-		geodesic: true,
-		strokeColor: '#FF0000',
-		strokeOpacity: 1.0,
-		strokeWeight: 2
-  });*/
-
-
-
-
+	
 });
+
+function updateLine(latitude, longitude, poly) {
+	var path = poly.getPath();
+	// add new point
+	path.push(new google.maps.LatLng(latitude, longitude));
+	// update the polyline with the updated path
+	poly.setPath(path);
+}
+
