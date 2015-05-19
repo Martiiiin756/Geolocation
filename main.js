@@ -25,6 +25,17 @@ $(function(){
 		);
 
 
+	var startPos;
+	navigator.geolocation.getCurrentPosition(function(position) {
+		startPos = position;
+		console.log('latitude: ' + startPos.coords.latitude);
+		console.log('longitude: ' + startPos.coords.longitude);
+
+	});
+	console.log('position: ' + startPos);
+	
+
+
 	//Aktivera stylingen till kartan
 	map.setOptions({styles: mapStyle});
 
@@ -36,13 +47,15 @@ $(function(){
 		new google.maps.LatLng(lat2, lng2),
 		new google.maps.LatLng(lat3, lng3)
 	];
-	var flightPath = new google.maps.Polyline({
+	var walkPath = new google.maps.Polyline({
 		path: lineCoordinates,
 		geodesic: true,
 		strokeColor: '#FF0000',
 		strokeOpacity: 1.0,
 		strokeWeight: 2
   });*/
+
+
 
 
 });
