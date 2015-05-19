@@ -30,9 +30,13 @@ $(function(){
 		startPos = position;
 		console.log('latitude: ' + startPos.coords.latitude);
 		console.log('longitude: ' + startPos.coords.longitude);
-
+		console.log('position: ' + startPos);
 	});
-	console.log('position: ' + startPos);
+	
+	navigator.geolocation.watchPosition(function(position) {
+  		console.log('current lat pos: ' + position.coords.latitude);
+  		console.log('current long pos: ' + position.coords.longitude);
+	});
 	
 
 
