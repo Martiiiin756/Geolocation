@@ -46,7 +46,7 @@ $(function(){
 	navigator.geolocation.watchPosition(function(position) {
   		console.log('current lat pos: ' + position.coords.latitude);
   		console.log('current long pos: ' + position.coords.longitude);
-  		updateLine(position.latitude, position.longitude, walkPath);
+  		updateLine(position.coords.latitude, position.coords.longitude, walkPath);
 
   		map.panTo(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
 	});
@@ -60,7 +60,7 @@ $(function(){
 });
 
 function updateLine(latitude, longitude, poly) {
-	var path = poly.getPath();
+	var path = poly.getPath().getArray();
 	// add new point
 	path.push(new google.maps.LatLng(latitude, longitude));
 	// update the polyline with the updated path
