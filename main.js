@@ -47,6 +47,8 @@ $(function(){
   		console.log('current lat pos: ' + position.coords.latitude);
   		console.log('current long pos: ' + position.coords.longitude);
   		updateLine(position.latitude, position.longitude, walkPath);
+
+  		map.panTo(new google.maps.LatLng(position.coords.latitude, position.coords.longitude));
 	});
 	
 	//Aktivera stylingen till kartan
