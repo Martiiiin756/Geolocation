@@ -1,10 +1,10 @@
 var markerSchool;
 
-$(document).ready(function(){
+$(function(){
 	
 	var mapOptions = {
 		center: { lat: 59.346027, lng: 18.058272},
-		zoom: 11,					//zoom
+		zoom: 15,					//zoom
 		scrollwheel: false,			//stäng av scrollzoom
 		disableDefaultUI: false 	//stäng av användarfunktioner
 	};
@@ -28,62 +28,21 @@ $(document).ready(function(){
 	//Aktivera stylingen till kartan
 	map.setOptions({styles: mapStyle});
 
-	var contentSchool = "<div id='content'> <h1>Medieinstitutet</h1></div>";
-	var contentHome = "<div id='content'> <h1>Sk&ouml;nviksv&auml;gen 286</h1></div>";
-
-	var infowindowSchool = new google.maps.InfoWindow ({ content: contentSchool });
-	var infowindowHome = new google.maps.InfoWindow ({ content: contentHome });
 
 
-
-	//Marker för skolan
-	markerSchool = new google.maps.Marker({
-		position: new google.maps.LatLng( 59.346027, 18.058272 ),
-		map: map,
-		title: "Medieinstitutet",
-		animation: google.maps.Animation.DROP,
-		icon: "finger.png",
-
-	});
-
-	//Visar namn när man klickar
-	google.maps.event.addListener(markerSchool, 'click', function(){
-			infowindowSchool.open(map, markerSchool);
-	});
+	///Pseudo för polylines
+	/*var lineCoordinates = [
+		new google.maps.LatLng(lat, lng),
+		new google.maps.LatLng(lat2, lng2),
+		new google.maps.LatLng(lat3, lng3)
+	];
+	var flightPath = new google.maps.Polyline({
+		path: lineCoordinates,
+		geodesic: true,
+		strokeColor: '#FF0000',
+		strokeOpacity: 1.0,
+		strokeWeight: 2
+  });*/
 
 
-
-
-
-	//Marker för hem
-	var markerHome = new google.maps.Marker({
-		position: new google.maps.LatLng( 59.272191, 18.053640 ),
-		map: map,
-		title: "Här bor jag!",
-		animation: google.maps.Animation.DROP,
-		icon: "house.png",
-
-	});
-
-	//Visar namn när man klickar
-	google.maps.event.addListener(markerHome, 'click', function(){
-			infowindowHome.open(map, markerHome);
-	});
-
-	
-
-	// google.maps.event.addListener(map, 'center_changed', function(){
-	// 	window.setTimeout(function(){
-	// 		map.panTo(marker.getPosition());
-	// 	}, 1000);
-	// });
-
-	$("#schoolbtn").click(function(){
-		map.panTo(markerSchool.getPosition());
-	});
-
-	$("#homebtn").click(function(){
-		map.panTo(markerHome.getPosition());
-		getZoom("1");
-	});
 });
